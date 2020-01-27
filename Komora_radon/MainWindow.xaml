@@ -1,0 +1,68 @@
+﻿<Window x:Name="okno_glowne" x:Class="Komora_radon.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:local="clr-namespace:Komora_radon"
+        mc:Ignorable="d"
+        Title="Radon chamber control" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TabControl HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="792">
+            <TabItem Header="Monitor">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="button" Content="Start chamber" HorizontalAlignment="Left" Height="30" Margin="7,28,0,0" VerticalAlignment="Top" Width="85" Click="button_Click"/>
+                    <Button x:Name="button1" Content="Open Valves" HorizontalAlignment="Left" Height="30" Margin="7,63,0,0" VerticalAlignment="Top" Width="85"/>
+                    <Label x:Name="label5" Content="LOG:" HorizontalAlignment="Left" Height="25" Margin="10,279,0,0" VerticalAlignment="Top" Width="117"/>
+                    <Image x:Name="image" HorizontalAlignment="Left" Height="250" Margin="439,2,-36,0" VerticalAlignment="Top" Width="383" OpacityMask="White"/>
+                    <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="72" VerticalAlignment="Top" Width="772" Margin="10,309,0,0"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Calculator">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="valve1_box" HorizontalAlignment="Left" Height="20" Margin="10,40,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="86"/>
+                    <Label x:Name="label" Content="Valve 1" HorizontalAlignment="Left" Height="25" Margin="10,15,0,0" VerticalAlignment="Top" Width="86"/>
+                    <Label x:Name="label1" Content="Valve 2" HorizontalAlignment="Left" Height="25" Margin="10,65,0,0" VerticalAlignment="Top" Width="86"/>
+                    <TextBox x:Name="valve2_box" HorizontalAlignment="Left" Height="21" Margin="10,90,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="86"/>
+                    <TextBox x:Name="radium_act_box" HorizontalAlignment="Left" Height="20" Margin="152,40,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="110"/>
+                    <Label x:Name="label2" Content="Ra activity [Bq]" HorizontalAlignment="Left" Height="25" Margin="152,15,0,0" VerticalAlignment="Top" Width="110"/>
+                    <Label x:Name="label3" Content="Pump flow" HorizontalAlignment="Left" Height="25" Margin="152,65,0,0" VerticalAlignment="Top" Width="110"/>
+                    <TextBox x:Name="pumpflow_box" HorizontalAlignment="Left" Height="23" Margin="152,95,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+                    <lvc:CartesianChart x:Name="calculator_chart" Series="{Binding SeriesCollection}" Margin="287,15,21,28" />
+                    <Button x:Name="button2" Content="Button" HorizontalAlignment="Left" Height="30" Margin="10,141,0,0" VerticalAlignment="Top" Width="86"/>
+                    <Label x:Name="label3_Copy" Content="Time [h]" HorizontalAlignment="Left" Height="25" Margin="152,127,0,0" VerticalAlignment="Top" Width="110"/>
+                    <TextBox x:Name="time_sim_box" HorizontalAlignment="Left" Height="23" Margin="152,157,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Configuration">
+                <Grid Background="#FFE5E5E5">
+                    <Label x:Name="label4" Content="Serial Port:" HorizontalAlignment="Left" Height="24" Margin="10,10,0,0" VerticalAlignment="Top" Width="142"/>
+                    <ComboBox x:Name="Combo_ports" HorizontalAlignment="Left" Height="30" Margin="10,34,0,0" VerticalAlignment="Top" Width="123" SelectionChanged="Combo_ports_SelectionChanged" ContextMenuOpening="Combo_ports_ContextMenuOpening">
+                        <ComboBoxItem Content="COM1" HorizontalAlignment="Right" Width="121"/>
+                        <ComboBoxItem Content="COM2" HorizontalAlignment="Left" Width="121"/>
+                    </ComboBox>
+                    <Button x:Name="connect_button" Content="Connect" HorizontalAlignment="Left" Height="29" Margin="157,34,0,0" VerticalAlignment="Top" Width="104" Click="connect_button_Click"/>
+                    <Button x:Name="disconnect_button" Content="Disconnect" HorizontalAlignment="Left" Height="29" Margin="278,34,0,0" VerticalAlignment="Top" Width="104" Click="disconnect_button_Click"/>
+                    <TextBox x:Name="command_text" HorizontalAlignment="Left" Height="29" Margin="10,89,0,0" TextWrapping="Wrap" Text="command" VerticalAlignment="Top" Width="251"/>
+                    <Button x:Name="send_button" Content="Send" HorizontalAlignment="Left" Height="29" Margin="278,89,0,0" VerticalAlignment="Top" Width="104" Click="send_button_Click"/>
+                    <TextBox x:Name="received_text" HorizontalAlignment="Left" Height="149" Margin="10,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Canvas HorizontalAlignment="Left" Height="8" Margin="1161,411,-375,0" VerticalAlignment="Top" Width="6"/>
+
+
+    </Grid>
+</Window>
