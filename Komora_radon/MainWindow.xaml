@@ -36,12 +36,12 @@
                     <Label x:Name="label" Content="Valve 1" HorizontalAlignment="Left" Height="25" Margin="10,15,0,0" VerticalAlignment="Top" Width="86"/>
                     <Label x:Name="label1" Content="Valve 2" HorizontalAlignment="Left" Height="25" Margin="10,65,0,0" VerticalAlignment="Top" Width="86"/>
                     <TextBox x:Name="valve2_box" HorizontalAlignment="Left" Height="21" Margin="10,90,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="86"/>
-                    <TextBox x:Name="radium_act_box" HorizontalAlignment="Left" Height="20" Margin="152,40,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="110"/>
+                    <TextBox x:Name="radium_act_box" HorizontalAlignment="Left" Height="20" Margin="152,40,0,0" TextWrapping="Wrap" Text="100,0" VerticalAlignment="Top" Width="110"/>
                     <Label x:Name="label2" Content="Ra activity [Bq]" HorizontalAlignment="Left" Height="25" Margin="152,15,0,0" VerticalAlignment="Top" Width="110"/>
                     <Label x:Name="label3" Content="Pump flow" HorizontalAlignment="Left" Height="25" Margin="152,65,0,0" VerticalAlignment="Top" Width="110"/>
                     <TextBox x:Name="pumpflow_box" HorizontalAlignment="Left" Height="23" Margin="152,95,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
                     <lvc:CartesianChart x:Name="calculator_chart" Series="{Binding SeriesCollection}" Margin="287,15,21,28" />
-                    <Button x:Name="button2" Content="Button" HorizontalAlignment="Left" Height="30" Margin="10,141,0,0" VerticalAlignment="Top" Width="86"/>
+                    <Button x:Name="calculate_button" Content="Solve" HorizontalAlignment="Left" Height="30" Margin="10,141,0,0" VerticalAlignment="Top" Width="86" Click="calculate_button_Click"/>
                     <Label x:Name="label3_Copy" Content="Time [h]" HorizontalAlignment="Left" Height="25" Margin="152,127,0,0" VerticalAlignment="Top" Width="110"/>
                     <TextBox x:Name="time_sim_box" HorizontalAlignment="Left" Height="23" Margin="152,157,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
                 </Grid>
@@ -58,6 +58,18 @@
                     <TextBox x:Name="command_text" HorizontalAlignment="Left" Height="29" Margin="10,89,0,0" TextWrapping="Wrap" Text="command" VerticalAlignment="Top" Width="251"/>
                     <Button x:Name="send_button" Content="Send" HorizontalAlignment="Left" Height="29" Margin="278,89,0,0" VerticalAlignment="Top" Width="104" Click="send_button_Click"/>
                     <TextBox x:Name="received_text" HorizontalAlignment="Left" Height="149" Margin="10,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="sim_tab" Header="Simulation" Margin="0,0,-4,-2">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="image1" HorizontalAlignment="Left" Height="306" Margin="470,96,0,-11" VerticalAlignment="Top" Width="291" Source="geant4_TLD100_2.png"/>
+                    <Button x:Name="upload_geant" Content="Upload problem" HorizontalAlignment="Left" Height="46" Margin="10,10,0,0" VerticalAlignment="Top" Width="109"/>
+                    <TextBox x:Name="data_back_box" HorizontalAlignment="Left" Height="285" Margin="10,96,0,0" TextWrapping="Wrap" Text="Waiting for server" VerticalAlignment="Top" Width="445"/>
+                    <Label x:Name="image_geant_label" Content="Geant problem visualization" HorizontalAlignment="Left" Margin="470,70,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="return_geant_label" Content="Data received from geant :" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.238,0.448"/>
                 </Grid>
             </TabItem>
         </TabControl>

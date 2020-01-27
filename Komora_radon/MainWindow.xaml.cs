@@ -32,20 +32,18 @@ namespace Komora_radon
         public MainWindow()
         {
             InitializeComponent();
-            chamber_air = new Gas(0.001, Double.Parse(radium_act_box.Text));
-
-            data = new SeriesCollection
-            {
+            chamber_air = new Gas(0.001, 100.0 /*Double.Parse(radium_act_box.Text)*/);
+            calculator_chart.Series = new SeriesCollection();
+            calculator_chart.Series.Add( 
                 new LineSeries
                 {
                     Title = "Ra-226",
                     Values = new ChartValues<double> { 1, 2, 3, 4 },
                     PointGeometry = null
                 }
-                
-            };
+            );
             
-            
+            //DataContext = this;
 
         }
 
@@ -91,6 +89,33 @@ namespace Komora_radon
             }
         }
 
+        private void calculate_button_Click(object sender, RoutedEventArgs e)
+        {
+            double time_max = Double.Parse(time_sim_box.Text);
+            List<double> data = chamber_air.Simulate_time(time_max,Isotope.Radionuclide.Ra_226);
+            List<double> time_base = new List<double>();
+            double tics = 0;
+            while(tics < time_max)
+            {
+                time_base.Add(tics);
+                tics += chamber_air.Get_timetic();
+            }
+            
+            ChartValues<double> radon_data= new ChartValues<double>();
+            radon_data.AddRange(data);
 
+            calculator_chart.Series.Clear();
+            calculator_chart.Series.Add(new LineSeries
+            {
+                Values = radon_data,
+
+            });
+            calculator_chart.AxisX.Clear();
+            calculator_chart.AxisX.Add(new Axis
+            {
+
+                MaxValue = time_max
+            });
+        }
     }
 }

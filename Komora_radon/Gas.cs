@@ -40,7 +40,7 @@ namespace Komora_radon
             isotope_num = atoms.Count;
         }
 
-        public void Simulation_tic(double time=1.0)
+        public void Simulation_tic()
         {
             double change = 0;
             Isotope.Radionuclide prev = Isotope.Radionuclide.Ra_226;
@@ -65,6 +65,32 @@ namespace Komora_radon
                     change = isotope.Decay(time_tic, change);
                 prev = isotope.Get_progeny();
             }
+        }
+
+        public List<double> Simulate_time(double time=0, Isotope.Radionuclide nuc = Isotope.Radionuclide.Rn_222)
+        {
+            List<double> data = new List<double>();
+            double current_time = 0;
+            double measured_activity = 0;
+            while(current_time < time)
+            {
+                Simulation_tic();
+                foreach(Isotope isotope in atoms)
+                {
+                    if(isotope.Get_Radionuclide() == nuc)
+                    {
+                        measured_activity = isotope.Get_activity();
+                    }
+                }
+                data.Add(measured_activity);
+                current_time+=time_tic;
+            }
+            return data;
+        }
+
+        public double Get_timetic()
+        {
+            return time_tic;
         }
             
         

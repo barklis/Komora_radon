@@ -273,7 +273,7 @@ namespace Komora_radon
                     hl = 1600;
                     break;
                 case Radionuclide.Rn_222:
-                    hl = 0;
+                    hl = 3;
                     break;
                 case Radionuclide.Po_218:
                     hl = 0;
@@ -333,6 +333,11 @@ namespace Komora_radon
         public double Get_activity()
         {
             return activity;
+        }
+
+        public Radionuclide Get_Radionuclide()
+        {
+            return nuclide;
         }
 
     }
